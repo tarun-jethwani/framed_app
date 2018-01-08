@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>framed</title>
+  <script type="text/javascript" src="ng_modules/angular/angular.min.js"></script>
+  <script type="text/javascript" src="ng_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+  <script type="text/javascript" src="ng_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Bootstrap CDN Included ----------------------------->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app = "myApp">
+
+
+
+  <center>
+    <h1>Framed !! </h1>
+
+  <div ng-controller="dropctrl">
+  <div class="container">
+  <div class="jumbotron">
+  <div class="form-group">
+  <label>Select Level : </label>
+  <div class="form-group">
+  <select class="form-control" ng-model="level_value" ng-options="x for x in levels" ng-click="push_level()">
+
+  </select>
+</div>
+
+  <p>Selected value is <b>{{level_value}}</b></p>
+
+  <div>
+    <h4> Diplaying images from the selected Level </h4>
+  </div>
+</div>
+
+    <img class="dimg1 img-thumbnail img-responsive" ng-src="{{var1}}">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img class="dimg2 img-thumbnail img-responsive" ng-src="{{var2}}">
+  </div>
+    <p><i>{{var3}}</i></p>
+  </div>
+
+<div ng-controller="MyCtrl as up" >
+
+  <div class="well">
+  <form name="up.upload_form">
+
+      <p>Image 1 &nbsp;<input
+          type="file"
+          ngf-select
+          ng-model="up.file"
+          name="file"
+          ngf-pattern="'image/*'"
+          accept="image/*"
+          ngf-max-size="20MB"
+          class="btn btn-default"
+          /></p>
+
+      <p><img class="img1 img-thumbnail" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+      <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+      <i ng-show="up.upload_form.file.$error.maxSize">File too large
+      {{up.file.size / 1000000|number:1}}MB: max 20M</i></p>
+
+      <button type="submit" class="btn btn-primary" ng-click="up.submit()">upload</button>
+
+  </form>
+</div>
+  <!-- form 2 starts here ----------------------->
+      <div class="well">
+  				<form name="up.upload_form2">
+
+              <p>Image 2 &nbsp;<input
+                  type="file"
+                  ngf-select
+                  ng-model="up.file2"
+                  name="file2"
+                  ngf-pattern="'image/*'"
+                  accept="image/*"
+                  ngf-max-size="20MB"
+                  class="btn btn-default"
+                  /></p>
+
+              <p><img class="img2 img-thumbnail"  ng-show="!!up.file2" ngf-thumbnail="up.file2 || '/thumb.jpg'"/>
+              <i ng-show="up.upload_form2.file2.$error.required">*required</i><br>
+              <i ng-show="up.upload_form2.file2.$error.maxSize">File too large
+              {{up.file.size / 1000000|number:1}}MB: max 20M</i></p>
+
+              <button type="submit" class="btn btn-primary" ng-click="up.submit2()">upload</button>
+
+
+          </form>
+        </div>
+
+
+</div>
+
+</center>
+</body>
+</html>
